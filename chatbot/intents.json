@@ -1,0 +1,143 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "How are you",
+        "Is anyone there?",
+        "Hello",
+        "Good day",
+        "bonjour",
+        "helo"
+        
+      ],
+      "responses": [
+        "Hey :-)",
+        "Hello, thanks for visiting",
+        "Hi there, what can I do for you?",
+        "Hi there, how can I help?",
+        "EL KSAKES, welcome you " 
+
+
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye"],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!","ok","I understand "],
+      "responses": ["Happy to help!", "Any time!", "My pleasure","no problem"]
+    },
+    {
+      "tag": "products",
+      "patterns": [
+        "Which products do you have?",
+        "What kinds of products are there?",
+        "What do you sell?",
+        "3tini products",
+        "bit products",
+        "can i get products ",
+        "khassna products"
+      ],
+      "responses": [
+        "We sell clothes with different categories:suits,vestes,chaussures,shorts,pants,t-shirts",
+        "We sell suits,vestes,chaussures,shorts,pants,t-shirts"
+      ]
+    },
+    {
+      "tag": "suits",
+      "patterns": [
+        "What suits you have?",
+        "What suits you sell"
+      ],
+      "responses": [
+        "We have : Furuyal Men's Suits 3 Piece Slim Fit Suit Set,Two Button Wedding Business Tuxedo Solid Blazer Jacket,Amyox Men's Slim Fit 3 Piece Suit Two Button Business Wedding Dress Tux Suit Set Jacket Vest Pants W"
+      ]
+    },
+    {
+      "tag": "veste",
+      "patterns": [
+        "What veste you have ?",
+        "What veste you sell ?"
+      ],
+      "responses": [
+        "We have : URBANFIND Men's Slim Fit Lightweight Sportswear Jacket Casual Bomber Jacket"
+      ]
+    },
+    {
+      "tag": "chaussure",
+      "patterns": [
+        "What chaussure you have ?",
+        "What chaussure you sell ?"
+      ],
+      "responses": [
+        "We have : Stradivarius LOAFERS - Mocassins,Nike Air ,Force 1 Low EVO,Nike Air Max Dn"
+      ]
+    },
+    {
+      "tag": "shorts",
+      "patterns": [
+        "What shorts you have ?",
+        "What shorts you sell ?"
+      ],
+      "responses": [
+        "We have : Under Armour Men's UA Tech™ Graphic Shorts,Amazon Essentials Men's Slim-Fit 9' Short,AMY COULEE Mens Athletic Workout Shorts 5.5' Cotton Casual Shorts Elastic Waist Joggers Sports Sweat"
+      ]
+    },
+    {
+      "tag": "pants",
+      "patterns": [
+        "What pants you have ?",
+        "What pants you sell ?"
+      ],
+      "responses": [
+        "We have : CQR Men's Cool Dry Tactical Pants,Cargo Pants"
+      ]
+    },
+    {
+      "tag": "t-shirts",
+      "patterns": [
+        "What t-shirts you have ?"
+        ,
+        "What t-shirts you sell ?"
+      ],
+      "responses": [
+        "We have: Hurley Men's Icon Slash Gradient T-Shirt,Champion Men's T-Shirt, Classic Tee For Men, Men's T-Shirt, Men's Tee (Reg. Or Big & Tall),VEIISAR Men's Heavy Weight Crew Neck T-Shirt Mens Premium Cotton Tee - Pre Shrunk S-3XL"
+      ]
+    },
+    {
+      "tag": "payments",
+      "patterns": [
+        "Do you take credit cards?",
+        "Do you accept Mastercard?",
+        "Can I pay with Paypal?",
+        "Are you cash only?"
+      ],
+      "responses": [
+        "We accept VISA, Mastercard and Paypal",
+        "We accept most major credit cards, and Paypal"
+      ]
+    },
+    {
+      "tag": "delivery",
+      "patterns": [
+        "How long does delivery take?",
+        "How long does shipping take?",
+        "When do I get my delivery?"
+      ],
+      "responses": [
+        "Delivery takes 2-4 days",
+        "Shipping takes 2-4 days"
+      ]
+    }
+  ]
+}

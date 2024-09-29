@@ -1,0 +1,220 @@
+{% include 'base.html' %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900,700,300&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: 'Lato', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+    
+        .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .register-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .register-title {
+            font-size: 28px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .register-button {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .register-button:hover {
+            background-color: #0056b3;
+        }
+
+        .register-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .register-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-back-home {
+            display: inline-block;
+            background: #f4cca4;
+            color: #1c1427;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-back-home:hover {
+            background: #d99879;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    
+    </style>
+</head>
+
+<body>
+   
+    <div class="register-container">
+        {% if request.GET.command == 'verification' %}
+        <div class="alert alert-warning text-center">
+            <p style="font-size: 25px; color: #856404;"><strong>Check Gmail To Activate Your Account</strong></p>
+            <a class="btn-back-home" href="{% url 'accounts:home' %}">Back to Home</a>
+        </div>
+        {% else %}
+        <br>
+        <br>
+        <br>
+        <div class="register-title">
+            <br>
+            <br>
+            <br>
+            Register
+        </div>
+        {% if forms.errors %}
+        <div class="alert alert-danger">
+            <p>Please correct the following errors:</p>
+            {% if forms.email.errors %}
+            {% for field in forms.email.errors %}
+            <p><strong>Email:</strong> {{ field }}</p>
+            {% endfor %}
+            {% endif %}
+
+            {% if forms.non_field_errors %}
+            {% for field in forms.non_field_errors %}
+            <p><strong>Password:</strong> {{ field }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% endif %}
+        <form action="{% url 'accounts:register' %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="phone_number">Phone</label>
+                {{ forms.Phone_number }}
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                {{ forms.email }}
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                {{ forms.password }}
+            </div>
+            <div class="form-group">
+                <label for="repeat_password">Confirm Password</label>
+                {{ forms.repeat_password }}
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                {{ forms.role }}
+            </div>
+            <button class="register-button" type="submit">Register</button>
+        </form>
+        <div class="register-footer">
+            <p>Have an account? <a href="{% url 'accounts:login' %}">Log in</a></p>
+            <hr>
+            <a href="{% url 'accounts:home' %}" class="btn-back-home">
+                <i class="fas fa-angle-double-left"></i> Back to Home
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

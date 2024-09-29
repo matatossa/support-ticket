@@ -1,0 +1,53 @@
+{% include "base.html" %}
+
+{% block content %}
+<br><br><br>
+<div class="container">
+  <h2 class="text-center mb-4">List of Problems and Causes</h2>
+  
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title">Problem and Cause List</h3>
+      
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Cause</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if archived_claims %}
+            {% for archived_claim in archived_claims %}
+              <tr>
+                <!-- Display the title of the claim -->
+                <td>{{ archived_claim.title }}</td>
+
+                <!-- Display the description of the claim -->
+                <td>{{ archived_claim.description }}</td>
+
+                <!-- Display and edit the cause filled by the admin -->
+                <td>
+                  <form method="POST" action="{% url 'support:update_cause' archived_claim.id %}">
+                    {% csrf_token %}
+                    <textarea class="form-control" name="cause" id="cause-{{ archived_claim.id }}">{{ archived_claim.cause }}</textarea>
+                </td>
+                <td>
+                  <button type="submit" class="btn btn-success btn-sm">Update Cause</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="4" class="text-center">No archived claims available.</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

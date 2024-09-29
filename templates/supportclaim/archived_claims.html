@@ -1,0 +1,45 @@
+{% include "base.html" %}
+
+{% block content %}
+<br><br><br>
+<div class="container">
+  <h2 class="text-center mb-4">Admin Dashboard</h2>
+  
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title">All Archived Claims</h3>
+      
+      <ul class="list-group">
+        {% for archived_claim in archived_claims %}
+          <li class="list-group-item">
+            <div>
+              <h4 class="mb-2">{{ archived_claim.title }}</h4>
+              <p class="mb-1">
+                <a href="{{ archived_claim.website_link }}" target="_blank" class="text-primary">{{ archived_claim.website_link }}</a>
+              </p>
+              <p class="mb-1"><strong>Description:</strong> {{ archived_claim.description }}</p>
+              <p class="mb-1"><strong>Client Phone Number:</strong> {{ archived_claim.client.Phone_number }}</p>
+              <p class="mb-1"><strong>Date of Submission:</strong> {{ archived_claim.created_at }}</p>
+              <p class="mb-1"><strong>Client Email:</strong> {{ archived_claim.client.email }}</p>
+              <p class="mb-1"><strong>Cause:</strong> {{ archived_claim.cause }}</p>
+
+            </div>
+            
+            <div class="d-flex align-items-center mt-2">
+              <!-- Delete archived claim form -->
+              <form method="POST" action="{% url 'support:delete_archived_claim' archived_claim.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this archived claim?');">
+                  Delete Archived Claim
+                </button>
+              </form>
+            </div>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-center">No archived claims available.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

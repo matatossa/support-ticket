@@ -1,0 +1,49 @@
+{% include "base.html" %}
+
+{% block content %}
+<br><br><br>
+<div class="container">
+    <h2 class="text-center mb-4">Gestion des utilisateurs</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if users %}
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.Phone_number}}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <form method="post" action="{% url 'support:update_user_role' user.id %}">
+                                {% csrf_token %}
+                                <select name="role" class="form-control">
+                                    <option value="client" {% if user.role == 'client' %}selected{% endif %}>Client</option>
+                                    <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-2">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'support:delete_user' user.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">BAN</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center">Aucun utilisateur trouvé</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

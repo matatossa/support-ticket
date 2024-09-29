@@ -1,0 +1,164 @@
+{% include 'base.html' %}
+<style>
+    .claim-form {
+        width: 40%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .claim-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #343a40;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #343a40;
+    }
+
+    .form-group input, .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Claim Status Styling */
+    .status-box {
+        border: 2px solid #007bff;
+        border-radius: 8px;
+        padding: 10px;
+        display: inline-block;
+        color: #343a40;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    /* Button Styling for Confirm and Reject */
+    .btn-success, .btn-danger {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    /* Claims List Styling */
+    .claims-list {
+        margin-top: 40px;
+    }
+
+    .claim-item {
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .claim-item h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .claim-item p {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+</style>
+
+<br>
+<br>
+<br>
+<div class="claim-form">
+    <h2>Submit a New Claim</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="website_link">Website link:</label>
+            <input type="url" id="website_link" name="website_link" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Claim</button>
+    </form>
+</div>
+
+<div class="claims-list">
+    <h2>Your Claims</h2>
+    {% for claim in claims %}
+        <div class="claim-item">
+            <h3>{{ claim.title }}</h3>
+            <div class="status-box">{{ claim.status }}</div>
+            <p>{{ claim.description }}</p>
+            <p><a href="{{ claim.website_link }}">{{ claim.website_link }}</a></p>
+            
+            {% if claim.status == 'solved' %}
+                <form method="POST" action="{% url 'support:confirm_claim' claim.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Confirm</button>
+                </form>
+                <form method="POST" action="{% url 'support:reject_claim' claim.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>You have no submitted claims.</p>
+    {% endfor %}
+</div>

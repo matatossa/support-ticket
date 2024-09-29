@@ -1,0 +1,55 @@
+{% include "base.html" %}
+
+{% block content %}
+<br><br><br>
+<div class="container">
+  <h2 class="text-center mb-4">Admin Dashboard</h2>
+  
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3 class="card-title">All Claims</h3>
+      
+      <ul class="list-group">
+        {% for claim in claims %}
+          <li class="list-group-item">
+            <div>
+              <h4 class="mb-2">{{ claim.title }}</h4>
+              <p class="mb-1">
+                <a href="{{ claim.website_link }}" target="_blank" class="text-primary">{{ claim.website_link }}</a>
+              </p>
+              <p class="mb-1"><strong>Description:</strong> {{ claim.description }}</p>
+              <p class="mb-1"><strong>Client Phone Number:</strong> {{ claim.client.Phone_number }}</p>
+              <p class="mb-1"><strong>Date of Submission:</strong> {{ claim.created_at }}</p>
+              <p class="mb-1"><strong>email:</strong> {{ claim.client.email }}</p>
+            </div>
+            
+            <div class="d-flex align-items-center mt-2">
+              <!-- Update claim status form -->
+              <form method="POST" action="{% url 'support:update_claim_status' claim.id %}" class="d-flex align-items-center mr-3">
+                {% csrf_token %}
+                <label for="status_{{ claim.id }}" class="mr-2">Status:</label>
+                <select id="status_{{ claim.id }}" name="status" class="custom-select mr-2">
+                  <option value="submitted" {% if claim.status == 'submitted' %}selected{% endif %}>Submitted</option>
+                  <option value="in_progress" {% if claim.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+                  <option value="solved" {% if claim.status == 'solved' %}selected{% endif %}>Solved</option>
+                </select>
+                <button class="btn btn-primary" type="submit">Update</button>
+              </form>
+
+              <!-- Delete claim form -->
+              <form method="POST" action="{% url 'support:delete_claim' claim.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this claim?');">
+                  Delete Claim
+                </button>
+              </form>
+            </div>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-center">No claims have been submitted.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% include 'base.html' %}
+
+{% block title %}
+    About Us
+{% endblock title %}
+
+{% block content %}
+    <div class="about-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-4 font-weight-bold mb-4">About VACLIC</h2>
+                    <p class="lead mb-4">VACLIC is an innovative support system designed to streamline communication between clients and administrators, providing fast and reliable issue resolution for web services.</p>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body">
+                            <i class="fas fa-bullseye fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title font-weight-bold">Tailored Support System</h5>
+                            <p class="card-text">A platform built to handle claims from submission to resolution, ensuring transparency and real-time updates for all users.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body">
+                            <i class="fas fa-user-shield fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title font-weight-bold">User Role Management</h5>
+                            <p class="card-text">Admins can manage users, assign roles, and handle actions such as removing accounts or claims based on the system's requirements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body">
+                            <i class="fas fa-tasks fa-3x text-success mb-3"></i>
+                            <h5 class="card-title font-weight-bold">Real-Time Claim Tracking</h5>
+                            <p class="card-text">Clients can monitor their claim's progress with real-time updates, keeping them informed from start to finish.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body">
+                            <i class="fas fa-archive fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title font-weight-bold">Comprehensive Issue Archive</h5>
+                            <p class="card-text">Admins have access to a detailed archive of resolved claims, helping improve strategies and maintain historical data for future reference.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body">
+                            <i class="fas fa-question-circle fa-3x text-info mb-3"></i>
+                            <h5 class="card-title font-weight-bold">FAQ & Resource Center</h5>
+                            <p class="card-text">Our dedicated FAQ section helps address common questions, providing quick answers and reducing support load for admins.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="card-body">
+                            <i class="fas fa-hands-helping fa-3x text-secondary mb-3"></i>
+                            <h5 class="card-title font-weight-bold">Reliable Support</h5>
+                            <p class="card-text">We aim to bridge the gap between users and technical support, offering fast, reliable service with every claim submission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <p class="lead font-weight-bold">Thank you for choosing VACLIC! We are committed to enhancing your support experience.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Reveal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            window.sr = ScrollReveal();
+
+            sr.reveal('.card', {
+                duration: 1000,
+                origin: 'bottom',
+                distance: '50px',
+                delay: 200
+            });
+        });
+    </script>
+
+    <!-- Icons CDN for FontAwesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+{% endblock content %}

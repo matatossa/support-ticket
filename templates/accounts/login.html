@@ -1,0 +1,145 @@
+{%include 'base.html'%}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,900,700,300&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: 'Lato', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .login-title {
+            font-size: 28px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .login-form-group {
+            margin-bottom: 15px;
+        }
+
+        .login-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .login-form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .login-form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .login-button {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-back-home {
+            display: inline-block;
+            background: #f4cca4;
+            color: #1c1427;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-back-home:hover {
+            background: #d99879;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-title">Login</div>
+        <form action="{% url 'accounts:login' %}" method="POST">
+            {% csrf_token %}
+            <div class="login-form-group">
+                <label for="email">Email</label>
+                <input id="email" type="text" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="login-form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" placeholder="Enter your password" required>
+            </div>
+		
+            <button class="login-button" type="submit">Login</button>
+            <div class="login-footer">
+                <p>Don’t have an account? <a href="{% url 'accounts:register' %}">Sign Up</a></p>
+                <p><a href="{% url 'accounts:forget_password' %}">Forget Password?</a></p>
+                <a href="{% url 'accounts:home' %}" class="btn-back-home">
+                    <i class="fas fa-angle-double-left"></i> Back to Home
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+{% include 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Support App FAQ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .faq-header h1 {
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #007BFF;
+        }
+
+        .faq-answer {
+            font-size: 1em;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+
+        /* Button styling */
+        .faq-toggle {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .faq-toggle:hover {
+            background-color: #0056b3;
+        }
+
+        .faq-answer.hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        // Script to toggle FAQ answer visibility
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+            } else {
+                answer.classList.add('hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="faq-container">
+        <div class="faq-header">
+            <h1>Frequently Asked Questions</h1>
+            <p>Your common questions about our support app, answered!</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How long will my request take to be solved?</div>
+            <div class="faq-answer hidden" id="answer1">
+                <p>The time required to solve your request depends on its complexity. On average, requests are resolved within 24-48 hours. However, for more complicated issues, it may take a bit longer. Our team will keep you updated throughout the process.</p>
+            </div>
+            <button class="faq-toggle" onclick="toggleAnswer('answer1')">View Answer</button>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I track the status of my request?</div>
+            <div class="faq-answer hidden" id="answer2">
+                <p>Once you submit a request, you can track its progress through your dashboard. You’ll see status updates such as "Submitted", "In Progress", or "Solved". You can also receive email notifications when there are updates to your request.</p>
+            </div>
+            <button class="faq-toggle" onclick="toggleAnswer('answer2')">View Answer</button>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">why did my request get removed</div>
+            <div class="faq-answer hidden" id="answer3">
+                <p>a request can be removed in the case that the website submitted isnt taken charge by Vaclic ,doing this multiple times can cause the ban of the account</p>
+            </div>
+            <button class="faq-toggle" onclick="toggleAnswer('answer3')">View Answer</button>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Who handles my requests?</div>
+            <div class="faq-answer hidden" id="answer4">
+                <p>Your requests are handled by our dedicated support team, which includes administrators and specialists with expertise in solving technical problems. You can rest assured that your request is in good hands!</p>
+            </div>
+            <button class="faq-toggle" onclick="toggleAnswer('answer4')">View Answer</button>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Can I give feedback on the solution?</div>
+            <div class="faq-answer hidden" id="answer5">
+                <p>Yes! Once your request is marked as solved, you will have the option to confirm if the solution works or reject it. </p>
+            </div>
+            <button class="faq-toggle" onclick="toggleAnswer('answer5')">View Answer</button>
+        </div>
+    </div>
+
+</body>
+</html>
